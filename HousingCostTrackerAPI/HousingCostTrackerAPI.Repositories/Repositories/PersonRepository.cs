@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingCostTrackerAPI.Repositories
+namespace HousingCostTrackerAPI.Repositories.Repositories
 {
     internal class PersonRepository
     {

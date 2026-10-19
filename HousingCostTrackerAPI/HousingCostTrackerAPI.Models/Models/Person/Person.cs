@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingCostTrackerAPI.Models.Place
+namespace HousingCostTrackerAPI.Models.Models.Person
 {
-    internal class Place
+    internal class Person
     {
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingCostTrackerAPI.Repositories
+namespace HousingCostTrackerAPI.Models.Category
 {
-    internal class PlaceRepository
+    internal class CategoryDTO
     {
     }
 }

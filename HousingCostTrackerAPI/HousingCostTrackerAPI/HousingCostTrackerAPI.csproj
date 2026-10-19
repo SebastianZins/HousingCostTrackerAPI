@@ -1,13 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b8fbfdc8-c26c-4629-a6f2-dc4af7007eaa</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HousingCostTrackerAPI.Database\HousingCostTrackerAPI.Database.csproj" />
+    <ProjectReference Include="..\HousingCostTrackerAPI.Repositories\HousingCostTrackerAPI.Repositories.csproj" />
+    <ProjectReference Include="..\HousingCostTrackerAPI.Services\HousingCostTrackerAPI.Services.csproj" />
   </ItemGroup>
 
 </Project>

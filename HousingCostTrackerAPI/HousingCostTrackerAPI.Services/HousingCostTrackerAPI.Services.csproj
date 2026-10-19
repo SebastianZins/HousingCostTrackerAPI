@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HousingCostTrackerAPI.Repositories\HousingCostTrackerAPI.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

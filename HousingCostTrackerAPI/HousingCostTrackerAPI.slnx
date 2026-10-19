@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="HousingCostTrackerAPI.Common/HousingCostTrackerAPI.Common.csproj" />
+  <Project Path="HousingCostTrackerAPI.Database/HousingCostTrackerAPI.Database.csproj" Id="07338817-c183-4b12-88a2-1f1c8edee9b3" />
   <Project Path="HousingCostTrackerAPI.Models/HousingCostTrackerAPI.Models.csproj" />
   <Project Path="HousingCostTrackerAPI.Repositories/HousingCostTrackerAPI.Repositories.csproj" />
   <Project Path="HousingCostTrackerAPI.Services/HousingCostTrackerAPI.Services.csproj" />

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingCostTrackerAPI.Common.Interfaces
+namespace HousingCostTrackerAPI.Models.Models.Category
 {
-    internal interface IRepository
+    internal class Category
     {
     }
 }

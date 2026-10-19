@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="3.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HousingCostTrackerAPI.Database\HousingCostTrackerAPI.Database.csproj" />
+    <ProjectReference Include="..\HousingCostTrackerAPI.Models\HousingCostTrackerAPI.Models.csproj" />
+  </ItemGroup>
+
 </Project>

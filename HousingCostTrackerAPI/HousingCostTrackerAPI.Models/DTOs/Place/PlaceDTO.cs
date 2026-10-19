@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingCostTrackerAPI.Models.Category
+namespace HousingCostTrackerAPI.Models.Place
 {
-    internal class Category
+    internal class PlaceDTO
     {
     }
 }
