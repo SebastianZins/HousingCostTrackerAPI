@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HousingCostTrackerAPI.Models.Models.Place
+﻿namespace HousingCostTrackerAPI.Models.Models.Place
 {
-    internal class Place
+    public class PlaceModel
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Name { get; set; } = string.Empty;
     }
 }

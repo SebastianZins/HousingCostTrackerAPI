@@ -18,9 +18,13 @@ builder.Services.AddMongoDb(builder.Configuration);
 
 builder.Services.AddScoped<TransactionRepository>();
 builder.Services.AddScoped<PersonRepository>();
+builder.Services.AddScoped<PlaceRepository>();
+builder.Services.AddScoped<CategoryRepository>();
 
 builder.Services.AddScoped<TransactionService>();
 builder.Services.AddScoped<PersonService>();
+builder.Services.AddScoped<PlaceService>();
+builder.Services.AddScoped<CategoryService>();
 
 builder.Services.AddOpenApi();
 
