@@ -9,9 +9,7 @@ BsonSerializer.RegisterSerializer(
     new GuidSerializer(GuidRepresentation.Standard)
 );
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddControllers()
@@ -19,15 +17,15 @@ builder.Services
 builder.Services.AddMongoDb(builder.Configuration);
 
 builder.Services.AddScoped<TransactionRepository>();
+builder.Services.AddScoped<PersonRepository>();
 
 builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<PersonService>();
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

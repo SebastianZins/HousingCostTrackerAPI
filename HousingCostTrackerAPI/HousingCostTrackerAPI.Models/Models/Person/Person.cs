@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HousingCostTrackerAPI.Models.Models.Person
+﻿namespace HousingCostTrackerAPI.Models.Models.Person
 {
-    internal class Person
+    public class PersonModel
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string ShortName { get; set; } = string.Empty;
     }
 }
