@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="HousingCostTrackerAPI.Common/HousingCostTrackerAPI.Common.csproj" />
+  <Project Path="HousingCostTrackerAPI.Models/HousingCostTrackerAPI.Models.csproj" />
+  <Project Path="HousingCostTrackerAPI.Repositories/HousingCostTrackerAPI.Repositories.csproj" />
+  <Project Path="HousingCostTrackerAPI.Services/HousingCostTrackerAPI.Services.csproj" />
+  <Project Path="HousingCostTrackerAPI/HousingCostTrackerAPI.csproj" />
+</Solution>
