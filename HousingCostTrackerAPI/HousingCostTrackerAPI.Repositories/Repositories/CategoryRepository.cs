@@ -9,7 +9,7 @@ namespace HousingCostTrackerAPI.Repositories.Repositories
 
         public CategoryRepository(IMongoDatabase database)
         {
-            _collection = database.GetCollection<CategoryModel>("Categorys");
+            _collection = database.GetCollection<CategoryModel>("Categories");
         }
 
         public async Task<List<CategoryModel>> GetAllAsync(
