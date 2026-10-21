@@ -10,10 +10,11 @@ Built with **ASP.NET Core on .NET 10**, the API exposes REST endpoints for manag
 - **People management:** Maintain the people associated with household transactions.
 - **Category management:** Organize income and expenses into categories.
 - **Place management:** Store merchants, recipients, or other places associated with transactions.
+- **Health endpoint:** Check whether the API is responding via `GET /api/health`.
 - **MongoDB persistence:** Store application data in a MongoDB database.
 - **Layered architecture:** Separate API controllers, services, repositories, data models, and database configuration.
 - **OpenAPI document in development:** The API maps an OpenAPI document when running in the Development environment.
-- **Private-network-first development:** Authentication is intentionally not implemented yet to keep early development fast on a private network. See the security note below.
+- **Private-network-first development:** Authentication is not implemented yet. See the security note below.
 
 ## Technology stack
 
@@ -39,7 +40,7 @@ The solution is organized into separate projects:
 
 ## API endpoints
 
-The controllers use the `/api/{resource}` route pattern. Each resource supports retrieving all records, retrieving a single record by ID, upserting a record, and deleting a record.
+The controllers use the `/api/{resource}` route pattern. Each data resource supports retrieving all records, retrieving a single record by ID, upserting a record, and deleting a record.
 
 | Resource | List all | Get one | Create/update | Delete |
 | --- | --- | --- | --- | --- |
@@ -50,11 +51,15 @@ The controllers use the `/api/{resource}` route pattern. Each resource supports 
 
 Replace `{guid}` with the ID of the record.
 
-### Health check and OpenAPI
+### Health check
 
-The client repository is configured to probe a `/api/health` endpoint before switching to its local fallback mode. **A health controller is not currently present in this repository's controller list**, so make sure the endpoint is implemented or update the client's health-check configuration before relying on this behavior.
+`GET /api/health` returns HTTP `200 OK` when the API is responding. The Angular client uses this endpoint to determine whether the backend is reachable before choosing between API-backed storage and its Local Storage fallback.
 
-The OpenAPI document is mapped in the Development environment using ASP.NET Core's `MapOpenApi()`. It is not mapped by this code when running in other environments.
+**Scope:** The current health endpoint only confirms that the API responds; it does not check MongoDB connectivity or whether database operations are healthy.
+
+### OpenAPI
+
+The OpenAPI document is mapped through ASP.NET Core's `MapOpenApi()` in the **Development** environment only. It is not mapped by this code when running in other environments.
 
 ## Planned work
 
@@ -65,7 +70,7 @@ The following items are planned next:
 
 ## Security note
 
-> **Internal-use tool:** This API is currently intended for use on a private network. Authentication and authorization are intentionally omitted in favor of rapid development. They are planned as a next step; the specific authentication design pattern and implementation have not yet been selected.
+> **Internal-use tool:** This API is currently intended for use on a private network. Authentication and authorization are not implemented yet; the specific authentication design and implementation have not been selected.
 >
 > Do not expose this API directly to the public internet or use it with sensitive data until appropriate authentication, authorization, and deployment security controls are in place.
 
@@ -106,7 +111,7 @@ dotnet restore
 dotnet run --project HousingCostTrackerAPI.csproj
 ```
 
-The application uses HTTPS redirection. The local URL and port depend on your ASP.NET Core launch profile and development environment. Check `Properties/launchSettings.json` or the console output after starting the application.
+The application is configured to listen on `https://localhost:1101` and uses HTTPS redirection.
 
 ## Connect the client
 
@@ -116,9 +121,10 @@ The companion Angular client is available here:
 
 The client's default API base URL is `https://localhost:1101/api`, configured in `src/environments/environment.ts`. Update this value to match the URL where this API is running.
 
+The API configures a CORS policy named `AngularClient` that allows requests from `http://localhost:4200`. If your client is served from a different origin, update the allowed origin in the API's startup configuration.
+
 ## Notes
 
 - The API uses GUIDs as record identifiers.
 - The `POST` endpoints perform an upsert through the service layer.
-- The API's CORS policy is not configured explicitly in the current application startup code. If the client and API are served from different origins, configure CORS for the intended client origin.
 - Authentication and authorization are not implemented yet. This project is intended for internal use on a private network only; see the [Security note](#security-note).
