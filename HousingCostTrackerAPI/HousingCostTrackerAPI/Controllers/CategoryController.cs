@@ -23,22 +23,24 @@ namespace HousingCostTrackerAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<CategoryDTO> GetCategoryAsync([FromQuery] Guid id)
+        public async Task<IActionResult> GetCategoryAsync([FromQuery] Guid id)
         {
             CategoryDTO model = await _categoryService.GetCategoryAsync(id);
-            return model;
+            return Ok(model);
         }
 
         [HttpPost]
-        public async Task UpsertAsync([FromBody] CategoryDTO model)
+        public async Task<IActionResult> UpsertAsync([FromBody] CategoryDTO model)
         {
             await _categoryService.UpsertAsync(model);
+            return Ok();
         }
 
         [HttpDelete]
-        public async Task DeleteAsync([FromQuery] Guid id)
+        public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
         {
             await _categoryService.DeleteAsync(id);
+            return Ok();
         }
     }
 }

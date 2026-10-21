@@ -13,10 +13,10 @@ namespace HousingCostTrackerAPI.Models.Place
 
         public PlaceDTO() { }
 
-        public PlaceDTO(PlaceModel transaction)
+        public PlaceDTO(PlaceModel model)
         {
-            Id = transaction.Id;
-            Name = transaction.Name;
+            Id = model.Id;
+            Name = model.Name;
         }
 
         public PlaceModel ToModel()
@@ -28,11 +28,11 @@ namespace HousingCostTrackerAPI.Models.Place
             };
         }
 
-        public PlaceModel WriteToModel(PlaceModel transaction)
+        public PlaceModel WriteToModel(PlaceModel model)
         {
-            transaction.Id = Id;
-            transaction.Name = Name;
-            return transaction;
+            model.Id = Id;
+            model.Name = Name;
+            return model;
         }
     }
 }

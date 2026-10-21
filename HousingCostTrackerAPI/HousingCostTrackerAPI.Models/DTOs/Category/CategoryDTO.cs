@@ -13,10 +13,10 @@ namespace HousingCostTrackerAPI.Models.Category
 
         public CategoryDTO() { }
 
-        public CategoryDTO(CategoryModel transaction)
+        public CategoryDTO(CategoryModel model)
         {
-            Id = transaction.Id;
-            Name = transaction.Name;
+            Id = model.Id;
+            Name = model.Name;
         }
 
         public CategoryModel ToModel()
@@ -28,11 +28,11 @@ namespace HousingCostTrackerAPI.Models.Category
             };
         }
 
-        public CategoryModel WriteToModel(CategoryModel transaction)
+        public CategoryModel WriteToModel(CategoryModel model)
         {
-            transaction.Id = Id;
-            transaction.Name = Name;
-            return transaction;
+            model.Id = Id;
+            model.Name = Name;
+            return model;
         }
     }
 }

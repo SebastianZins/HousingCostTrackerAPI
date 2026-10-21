@@ -23,22 +23,24 @@ namespace HousingCostTrackerAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<TransactionDTO> GetTransactionAsync([FromQuery] Guid id)
+        public async Task<IActionResult> GetTransactionAsync([FromQuery] Guid id)
         {
             TransactionDTO model = await _transactionService.GetTransactionAsync(id);
-            return model;
+            return Ok(model);
         }
 
         [HttpPost]
-        public async Task UpsertAsync([FromBody] TransactionDTO model)
+        public async Task<IActionResult> UpsertAsync([FromBody] TransactionDTO model)
         {
             await _transactionService.UpsertAsync(model);
+            return Ok();
         }
 
         [HttpDelete]
-        public async Task DeleteAsync([FromQuery] Guid id)
+        public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
         {
             await _transactionService.DeleteAsync(id);
+            return Ok();
         }
     }
 }

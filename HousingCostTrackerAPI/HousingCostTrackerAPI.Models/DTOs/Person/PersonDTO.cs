@@ -1,5 +1,4 @@
 ﻿using HousingCostTrackerAPI.Models.Models.Person;
-using HousingCostTrackerAPI.Models.Models.Transaction;
 using Newtonsoft.Json;
 
 namespace HousingCostTrackerAPI.Models.Person
@@ -20,12 +19,12 @@ namespace HousingCostTrackerAPI.Models.Person
 
         public PersonDTO() { }
 
-        public PersonDTO(PersonModel transaction)
+        public PersonDTO(PersonModel model)
         {
-            Id = transaction.Id;
-            FirstName = transaction.FirstName;
-            LastName = transaction.LastName;
-            ShortName = transaction.ShortName;
+            Id = model.Id;
+            FirstName = model.FirstName;
+            LastName = model.LastName;
+            ShortName = model.ShortName;
         }
 
         public PersonModel ToModel()
@@ -39,13 +38,13 @@ namespace HousingCostTrackerAPI.Models.Person
             };
         }
 
-        public PersonModel WriteToModel(PersonModel transaction)
+        public PersonModel WriteToModel(PersonModel model)
         {
-            transaction.Id = Id;
-            transaction.FirstName = FirstName;
-            transaction.LastName = LastName;
-            transaction.ShortName = ShortName;
-            return transaction;
+            model.Id = Id;
+            model.FirstName = FirstName;
+            model.LastName = LastName;
+            model.ShortName = ShortName;
+            return model;
         }
     }
 }
