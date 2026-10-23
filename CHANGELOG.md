@@ -1,13 +1,10 @@
 # Changelog
 
-Major project changes are listed below in reverse chronological order. Timestamps use the `Europe/Berlin` time zone (CEST, UTC+02:00 where applicable) and are based on Git commit timestamps.
+Major project changes are listed below in reverse chronological order. Timestamps use the `Europe/Berlin` time zone and are based on Git commit timestamps.
 
 ## 2026-10-24
 
 - **01:14** — Updated the README to document the service unit tests, GitHub Actions workflow, test commands, and AI-assisted documentation.
-
-## 2026-10-24
-
 - **01:03** — Added a GitHub Actions workflow that restores, builds, and runs the .NET test suite on pushes to `main`.
 - **01:00** — Added service unit test suites for transactions, categories, places, and persons, using xUnit and Moq.
 - **00:08** — Added the initial unit test suite and introduced/updated service and repository interfaces to support testable service dependencies.
