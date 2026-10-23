@@ -13,6 +13,8 @@ Built with **ASP.NET Core on .NET 10**, the API exposes REST endpoints for manag
 - **Health endpoint:** Check whether the API is responding via `GET /api/health`.
 - **MongoDB persistence:** Store application data in a MongoDB database.
 - **Layered architecture:** Separate API controllers, services, repositories, data models, and database configuration.
+- **Automated unit tests:** Test service behavior, DTO/model mapping, and error handling.
+- **GitHub Actions CI:** Restore, build, and test the solution automatically on pushes to `main`.
 - **OpenAPI document in development:** The API maps an OpenAPI document when running in the Development environment.
 - **Private-network-first development:** Authentication is not implemented yet. See the security note below.
 
@@ -24,6 +26,8 @@ Built with **ASP.NET Core on .NET 10**, the API exposes REST endpoints for manag
 - C#
 - Newtonsoft.Json
 - OpenAPI
+- xUnit and Moq for unit testing
+- GitHub Actions for continuous integration
 
 ## Architecture
 
@@ -37,6 +41,7 @@ The solution is organized into separate projects:
 | `HousingCostTrackerAPI.Repositories` | MongoDB-backed data access |
 | `HousingCostTrackerAPI.Services` | Application/business operations |
 | `HousingCostTrackerAPI.Database` | MongoDB configuration and dependency registration |
+| `HousingCostTrackerAPI.UnitTests` | Unit tests for service behavior using xUnit and Moq |
 
 ## API endpoints
 
@@ -61,12 +66,36 @@ Replace `{guid}` with the ID of the record.
 
 The OpenAPI document is mapped through ASP.NET Core's `MapOpenApi()` in the **Development** environment only. It is not mapped by this code when running in other environments.
 
-## Planned work
+## Tests
 
-The following items are planned next:
+The test project is located at `HousingCostTrackerAPI/HousingCostTrackerAPI.UnitTests`. The current unit tests focus on the service layer and use **xUnit** with **Moq** to mock repository dependencies, so these tests do not require a running MongoDB instance.
 
-- **Automated tests:** Add tests for the API's services, repositories, and HTTP endpoints.
-- **GitHub Actions:** Add a CI workflow that automatically runs the test suite on pushes and pull requests. The workflow will be added alongside the tests so changes can be validated automatically.
+The service tests cover:
+
+- Retrieving all records, including empty results.
+- Retrieving a record by ID and mapping models to DTOs.
+- Handling missing records and repository failures.
+- Creating or updating records and verifying model mapping.
+- Deleting records and handling errors.
+
+Run the full solution test suite from the repository root:
+
+```bash
+dotnet restore HousingCostTrackerAPI/HousingCostTrackerAPI.slnx
+dotnet test HousingCostTrackerAPI/HousingCostTrackerAPI.slnx --configuration Release
+```
+
+## Continuous integration
+
+The [GitHub Actions workflow](.github/workflows/main.yml) runs on every push to the `main` branch. It performs these steps in order:
+
+1. Checks out the repository.
+2. Sets up the .NET 10 SDK.
+3. Restores solution dependencies.
+4. Builds the solution in Release configuration.
+5. Runs all tests.
+
+GitHub Actions skips subsequent steps when a previous step fails. A failed restore, build, or test command causes the workflow run to fail. The workflow currently runs on pushes to `main`; it is not configured to run on pull requests.
 
 ## Security note
 
@@ -128,3 +157,7 @@ The API configures a CORS policy named `AngularClient` that allows requests from
 - The API uses GUIDs as record identifiers.
 - The `POST` endpoints perform an upsert through the service layer.
 - Authentication and authorization are not implemented yet. This project is intended for internal use on a private network only; see the [Security note](#security-note).
+
+## Documentation
+
+This README was created with the assistance of AI.
