@@ -13,7 +13,7 @@ namespace HousingCostTrackerAPI.Models.Transaction
         public long Date { get; set; } = 0;
 
         [JsonProperty("amount")]
-        public long Amount { get; set; } = 0;
+        public double Amount { get; set; } = 0;
 
         [JsonProperty("description")]
         public string? Description { get; set; } = null;

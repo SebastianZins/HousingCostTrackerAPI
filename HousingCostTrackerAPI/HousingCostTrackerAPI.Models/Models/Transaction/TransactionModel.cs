@@ -7,7 +7,7 @@ namespace HousingCostTrackerAPI.Models.Models.Transaction
     public class TransactionModel: MongoDbBase
     {
         public long Date { get; set; } = 0;
-        public long Amount { get; set; } = 0;
+        public double Amount { get; set; } = 0;
         public string? Description { get; set; } = null;
         public Guid? PlaceId { get; set; } = null;
         public Guid? CategoryId { get; set; } = null;
