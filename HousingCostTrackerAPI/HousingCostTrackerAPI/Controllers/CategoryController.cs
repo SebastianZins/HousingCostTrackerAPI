@@ -1,4 +1,5 @@
-﻿using HousingCostTrackerAPI.Models.Category;
+﻿using HousingCostTrackerAPI.Models;
+using HousingCostTrackerAPI.Models.Category;
 using HousingCostTrackerAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,29 +19,57 @@ namespace HousingCostTrackerAPI.Controllers
         [Route("all")]
         public async Task<IActionResult> GetAllAsync()
         {
-            List<CategoryDTO> categorys = await _categoryService.GetAllCategorysAsync();
-            return Ok(categorys);
+            try
+            {
+                List<CategoryDTO> categories = await _categoryService.GetAllCategorysAsync();
+                return new ApiJsonResult(categories);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message );
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCategoryAsync([FromQuery] Guid id)
         {
-            CategoryDTO model = await _categoryService.GetCategoryAsync(id);
-            return Ok(model);
+            try
+            {
+                CategoryDTO model = await _categoryService.GetCategoryAsync(id);
+                return new ApiJsonResult(model);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> UpsertAsync([FromBody] CategoryDTO model)
         {
-            await _categoryService.UpsertAsync(model);
-            return Ok();
+            try
+            {
+                await _categoryService.UpsertAsync(model);
+                return new ApiJsonResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
         {
-            await _categoryService.DeleteAsync(id);
-            return Ok();
+            try
+            {
+                await _categoryService.DeleteAsync(id);
+                return new ApiJsonResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
     }
 }

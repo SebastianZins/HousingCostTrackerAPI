@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HousingCostTrackerAPI.Common.Interfaces
+﻿namespace HousingCostTrackerAPI.Common.Interfaces
 {
-    internal interface IService
+    public interface IService
     {
     }
 }

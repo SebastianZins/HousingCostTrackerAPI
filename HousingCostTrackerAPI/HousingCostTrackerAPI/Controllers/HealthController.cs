@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HousingCostTrackerAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HousingCostTrackerAPI.Controllers
 {
@@ -8,7 +9,7 @@ namespace HousingCostTrackerAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Check()
         {
-            return Ok();
+            return new ApiJsonResult();
         }
     }
 }
