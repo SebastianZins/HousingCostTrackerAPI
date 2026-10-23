@@ -4,6 +4,8 @@ The **Housing Cost Tracker API** is the backend for [Home Cost Tracker](https://
 
 Built with **ASP.NET Core on .NET 10**, the API exposes REST endpoints for managing transactions, people, places, and categories. Data is persisted in **MongoDB**.
 
+**[View the changelog](CHANGELOG.md)** for major project milestones and timestamps.
+
 ## Features
 
 - **Transaction management:** Retrieve, create or update, and delete transactions.
