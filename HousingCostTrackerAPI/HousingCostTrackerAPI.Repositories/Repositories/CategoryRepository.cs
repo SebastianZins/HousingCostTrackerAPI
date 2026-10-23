@@ -1,9 +1,10 @@
 ﻿using HousingCostTrackerAPI.Models.Models.Category;
+using HousingCostTrackerAPI.Repositories.Interfaces;
 using MongoDB.Driver;
 
 namespace HousingCostTrackerAPI.Repositories.Repositories
 {
-    public class CategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly IMongoCollection<CategoryModel> _collection;
 

@@ -1,6 +1,6 @@
 ﻿using HousingCostTrackerAPI.Models;
 using HousingCostTrackerAPI.Models.Transaction;
-using HousingCostTrackerAPI.Services;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,9 +9,9 @@ namespace HousingCostTrackerAPI.Controllers
     [Route("api/[controller]")]
     public class TransactionController : Controller
     {
-        private readonly TransactionService _transactionService;
+        private readonly ITransactionService _transactionService;
 
-        public TransactionController(TransactionService transactionService)
+        public TransactionController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
         }

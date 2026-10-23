@@ -1,12 +1,10 @@
 ﻿using HousingCostTrackerAPI.Models.Models.Person;
+using HousingCostTrackerAPI.Repositories.Interfaces;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HousingCostTrackerAPI.Repositories.Repositories
 {
-    public class PersonRepository
+    public class PersonRepository : IPersonRepository
     {
         private readonly IMongoCollection<PersonModel> _collection;
 

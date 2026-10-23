@@ -1,16 +1,17 @@
 ﻿using HousingCostTrackerAPI.Models.Models.Person;
 using HousingCostTrackerAPI.Models.Person;
-using HousingCostTrackerAPI.Repositories.Repositories;
+using HousingCostTrackerAPI.Repositories.Interfaces;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace HousingCostTrackerAPI.Services
 {
-    public class PersonService
+    public class PersonService : IPersonService
     {
-        private readonly ILogger<CategoryService> _logger;
-        private readonly PersonRepository _personRepository;
+        private readonly ILogger<PersonService> _logger;
+        private readonly IPersonRepository _personRepository;
 
-        public PersonService(PersonRepository personRepository, ILogger<CategoryService> logger)
+        public PersonService(IPersonRepository personRepository, ILogger<PersonService> logger)
         {
             _personRepository = personRepository;
             _logger = logger;

@@ -1,16 +1,17 @@
 ﻿using HousingCostTrackerAPI.Models.Models.Place;
 using HousingCostTrackerAPI.Models.Place;
-using HousingCostTrackerAPI.Repositories.Repositories;
+using HousingCostTrackerAPI.Repositories.Interfaces;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace HousingCostTrackerAPI.Services
 {
-    public class PlaceService
+    public class PlaceService : IPlaceService
     {
-        private readonly ILogger<CategoryService> _logger;
-        private readonly PlaceRepository _placeRepository;
+        private readonly ILogger<PlaceService> _logger;
+        private readonly IPlaceRepository _placeRepository;
 
-        public PlaceService(PlaceRepository placeRepository, ILogger<CategoryService> logger)
+        public PlaceService(IPlaceRepository placeRepository, ILogger<PlaceService> logger)
         {
             _placeRepository = placeRepository;
             _logger = logger;

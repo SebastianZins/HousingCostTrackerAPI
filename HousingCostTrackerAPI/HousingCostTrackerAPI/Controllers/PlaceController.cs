@@ -1,6 +1,6 @@
 ﻿using HousingCostTrackerAPI.Models;
 using HousingCostTrackerAPI.Models.Place;
-using HousingCostTrackerAPI.Services;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HousingCostTrackerAPI.Controllers
@@ -8,9 +8,9 @@ namespace HousingCostTrackerAPI.Controllers
     [Route("api/[controller]")]
     public class PlaceController : Controller
     {
-        private readonly PlaceService _placeService;
+        private readonly IPlaceService _placeService;
 
-        public PlaceController(PlaceService placeService)
+        public PlaceController(IPlaceService placeService)
         {
             _placeService = placeService;
         }

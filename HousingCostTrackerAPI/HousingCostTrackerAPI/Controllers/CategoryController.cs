@@ -1,6 +1,6 @@
 ﻿using HousingCostTrackerAPI.Models;
 using HousingCostTrackerAPI.Models.Category;
-using HousingCostTrackerAPI.Services;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HousingCostTrackerAPI.Controllers
@@ -8,9 +8,9 @@ namespace HousingCostTrackerAPI.Controllers
     [Route("api/[controller]")]
     public class CategoryController : Controller
     {
-        private readonly CategoryService _categoryService;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(CategoryService categoryService)
+        public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }

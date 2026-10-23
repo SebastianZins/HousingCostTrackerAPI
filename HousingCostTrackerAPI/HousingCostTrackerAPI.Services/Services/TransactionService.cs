@@ -1,17 +1,18 @@
 ﻿using HousingCostTrackerAPI.Models.Models.Transaction;
 using HousingCostTrackerAPI.Models.Transaction;
-using HousingCostTrackerAPI.Repositories.Repositories;
+using HousingCostTrackerAPI.Repositories.Interfaces;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
 namespace HousingCostTrackerAPI.Services
 {
-    public class TransactionService
+    public class TransactionService : ITransactionService
     {
-        private readonly ILogger<CategoryService> _logger;
-        private readonly TransactionRepository _transactionRepository;
+        private readonly ILogger<TransactionService> _logger;
+        private readonly ITransactionRepository _transactionRepository;
 
-        public TransactionService(TransactionRepository transactionRepository, ILogger<CategoryService> logger)
+        public TransactionService(ITransactionRepository transactionRepository, ILogger<TransactionService> logger)
         {
             _transactionRepository = transactionRepository;
             _logger = logger;

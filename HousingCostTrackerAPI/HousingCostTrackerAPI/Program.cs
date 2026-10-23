@@ -1,6 +1,8 @@
 using HousingCostTrackerAPI.Database.MongoDB;
+using HousingCostTrackerAPI.Repositories.Interfaces;
 using HousingCostTrackerAPI.Repositories.Repositories;
 using HousingCostTrackerAPI.Services;
+using HousingCostTrackerAPI.Services.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
@@ -29,15 +31,15 @@ builder.Services
     .AddNewtonsoftJson();
 builder.Services.AddMongoDb(builder.Configuration);
 
-builder.Services.AddScoped<TransactionRepository>();
-builder.Services.AddScoped<PersonRepository>();
-builder.Services.AddScoped<PlaceRepository>();
-builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IPlaceRepository, PlaceRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-builder.Services.AddScoped<TransactionService>();
-builder.Services.AddScoped<PersonService>();
-builder.Services.AddScoped<PlaceService>();
-builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IPlaceService, PlaceService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddOpenApi();
 

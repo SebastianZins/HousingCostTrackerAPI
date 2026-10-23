@@ -1,6 +1,6 @@
 ﻿using HousingCostTrackerAPI.Models;
 using HousingCostTrackerAPI.Models.Person;
-using HousingCostTrackerAPI.Services;
+using HousingCostTrackerAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HousingCostTrackerAPI.Controllers
@@ -8,9 +8,9 @@ namespace HousingCostTrackerAPI.Controllers
     [Route("api/[controller]")]
     public class PersonController : Controller
     {
-        private readonly PersonService _personService;
+        private readonly IPersonService _personService;
 
-        public PersonController(PersonService personService)
+        public PersonController(IPersonService personService)
         {
             _personService = personService;
         }
