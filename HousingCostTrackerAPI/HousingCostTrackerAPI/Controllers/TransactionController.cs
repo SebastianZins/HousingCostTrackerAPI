@@ -1,6 +1,8 @@
-﻿using HousingCostTrackerAPI.Models.Transaction;
+﻿using HousingCostTrackerAPI.Models;
+using HousingCostTrackerAPI.Models.Transaction;
 using HousingCostTrackerAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace HousingCostTrackerAPI.Controllers
 {
@@ -18,29 +20,57 @@ namespace HousingCostTrackerAPI.Controllers
         [Route("all")]
         public async Task<IActionResult> GetAllAsync()
         {
-            List<TransactionDTO> transactions = await _transactionService.GetAllTransactionsAsync();
-            return Ok(transactions);
+            try
+            {
+                List<TransactionDTO> transactions = await _transactionService.GetAllTransactionsAsync();
+                return new ApiJsonResult(transactions);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetTransactionAsync([FromQuery] Guid id)
         {
-            TransactionDTO model = await _transactionService.GetTransactionAsync(id);
-            return Ok(model);
+            try
+            {
+                TransactionDTO model = await _transactionService.GetTransactionAsync(id);
+                return new ApiJsonResult(model);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> UpsertAsync([FromBody] TransactionDTO model)
         {
-            await _transactionService.UpsertAsync(model);
-            return Ok();
+            try
+            {
+                await _transactionService.UpsertAsync(model);
+                return new ApiJsonResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
         {
-            await _transactionService.DeleteAsync(id);
-            return Ok();
+            try
+            {
+                await _transactionService.DeleteAsync(id);
+                return new ApiJsonResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
     }
 }

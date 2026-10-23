@@ -1,8 +1,13 @@
 <Solution>
-  <Project Path="HousingCostTrackerAPI.Common/HousingCostTrackerAPI.Common.csproj" />
-  <Project Path="HousingCostTrackerAPI.Database/HousingCostTrackerAPI.Database.csproj" Id="07338817-c183-4b12-88a2-1f1c8edee9b3" />
-  <Project Path="HousingCostTrackerAPI.Models/HousingCostTrackerAPI.Models.csproj" />
-  <Project Path="HousingCostTrackerAPI.Repositories/HousingCostTrackerAPI.Repositories.csproj" />
-  <Project Path="HousingCostTrackerAPI.Services/HousingCostTrackerAPI.Services.csproj" />
-  <Project Path="HousingCostTrackerAPI/HousingCostTrackerAPI.csproj" />
+  <Folder Name="/src/">
+    <Project Path="HousingCostTrackerAPI.Common/HousingCostTrackerAPI.Common.csproj" />
+    <Project Path="HousingCostTrackerAPI.Database/HousingCostTrackerAPI.Database.csproj" Id="07338817-c183-4b12-88a2-1f1c8edee9b3" />
+    <Project Path="HousingCostTrackerAPI.Models/HousingCostTrackerAPI.Models.csproj" />
+    <Project Path="HousingCostTrackerAPI.Repositories/HousingCostTrackerAPI.Repositories.csproj" />
+    <Project Path="HousingCostTrackerAPI.Services/HousingCostTrackerAPI.Services.csproj" />
+    <Project Path="HousingCostTrackerAPI/HousingCostTrackerAPI.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="HousingCostTrackerAPI.UnitTests/HousingCostTrackerAPI.UnitTests.csproj" Id="c94bfd6d-365b-4d3d-9abc-c0c8ed9da469" />
+  </Folder>
 </Solution>

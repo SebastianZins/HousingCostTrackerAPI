@@ -1,4 +1,5 @@
-﻿using HousingCostTrackerAPI.Models.Place;
+﻿using HousingCostTrackerAPI.Models;
+using HousingCostTrackerAPI.Models.Place;
 using HousingCostTrackerAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,29 +19,57 @@ namespace HousingCostTrackerAPI.Controllers
         [Route("all")]
         public async Task<IActionResult> GetAllAsync()
         {
-            List<PlaceDTO> places = await _placeService.GetAllPlacesAsync();
-            return Ok(places);
+            try
+            {
+                List<PlaceDTO> places = await _placeService.GetAllPlacesAsync();
+                return new ApiJsonResult(places);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPlaceAsync([FromQuery] Guid id)
         {
-            PlaceDTO model = await _placeService.GetPlaceAsync(id);
-            return Ok(model);
+            try
+            {
+                PlaceDTO model = await _placeService.GetPlaceAsync(id);
+                return new ApiJsonResult(model);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> UpsertAsync([FromBody] PlaceDTO model)
         {
-            await _placeService.UpsertAsync(model);
-            return Ok();
+            try
+            {
+                await _placeService.UpsertAsync(model);
+                return new ApiJsonResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync([FromQuery] Guid id)
         {
-            await _placeService.DeleteAsync(id);
-            return Ok();
+            try
+            {
+                await _placeService.DeleteAsync(id);
+                return new ApiJsonResult(true);
+            }
+            catch (Exception ex)
+            {
+                return new ApiJsonResult(false, ex.Message);
+            }
         }
     }
 }
