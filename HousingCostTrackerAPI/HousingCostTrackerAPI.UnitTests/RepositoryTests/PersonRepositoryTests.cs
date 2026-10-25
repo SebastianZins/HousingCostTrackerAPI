@@ -137,7 +137,7 @@ namespace HousingCostTrackerAPI.UnitTests.RepositoryTests
 
             Assert.NotNull(result);
             Assert.Equal(id, result.Id);
-            Assert.Equal("First Up", result.FirstName);
+            Assert.Equal("First UP", result.FirstName);
             Assert.Equal("Last UP", result.LastName);
             Assert.Equal("Short UP", result.ShortName);
 
