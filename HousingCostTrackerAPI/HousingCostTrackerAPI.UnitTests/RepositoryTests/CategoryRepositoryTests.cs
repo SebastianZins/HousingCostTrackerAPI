@@ -118,7 +118,7 @@ namespace HousingCostTrackerAPI.UnitTests.RepositoryTests
             await repository.UpsertAsync(original);
 
             CategoryModel updated = CreateCategory(
-                "Update", id);
+                "Updated", id);
 
             // Act
             await repository.UpsertAsync(updated);
