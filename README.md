@@ -29,6 +29,7 @@ Built with **ASP.NET Core on .NET 10**, the API exposes REST endpoints for manag
 - Newtonsoft.Json
 - OpenAPI
 - xUnit and Moq for unit testing
+- Testcontainers for MongoDB repository integration tests
 - GitHub Actions for continuous integration
 
 ## Architecture
@@ -43,7 +44,7 @@ The solution is organized into separate projects:
 | `HousingCostTrackerAPI.Repositories` | MongoDB-backed data access |
 | `HousingCostTrackerAPI.Services` | Application/business operations |
 | `HousingCostTrackerAPI.Database` | MongoDB configuration and dependency registration |
-| `HousingCostTrackerAPI.UnitTests` | Unit tests for service behavior using xUnit and Moq |
+| `HousingCostTrackerAPI.UnitTests` | Service unit tests and MongoDB repository integration tests using xUnit, Moq, and Testcontainers |
 
 ## API endpoints
 
@@ -70,21 +71,43 @@ The OpenAPI document is mapped through ASP.NET Core's `MapOpenApi()` in the **De
 
 ## Tests
 
-The test project is located at `HousingCostTrackerAPI/HousingCostTrackerAPI.UnitTests`. The current unit tests focus on the service layer and use **xUnit** with **Moq** to mock repository dependencies, so these tests do not require a running MongoDB instance.
+The test project is located at `HousingCostTrackerAPI/HousingCostTrackerAPI.UnitTests`. The test project is located at `HousingCostTrackerAPI/HousingCostTrackerAPI.UnitTests` and contains both service unit tests and repository integration tests.
 
-The service tests cover:
+### Service unit tests
+
+Service tests use **xUnit** and **Moq** to mock repository dependencies. They do not require MongoDB or Docker.
+
+Coverage includes:
 
 - Retrieving all records, including empty results.
-- Retrieving a record by ID and mapping models to DTOs.
+- Retrieving records by ID and mapping models to DTOs.
 - Handling missing records and repository failures.
 - Creating or updating records and verifying model mapping.
 - Deleting records and handling errors.
 
-Run the full solution test suite from the repository root:
+### MongoDB repository integration tests
+
+Repository tests exercise the real MongoDB driver against a temporary MongoDB container managed by **Testcontainers**. The test suites cover transactions, categories, people, and places, including listing records, inserting and updating records through upsert operations, and deleting records. Transaction repository tests additionally cover retrieving a record by ID and returning `null` for an unknown ID.
+
+**Prerequisites:** Docker Desktop (or another working Docker runtime) must be running. The first run may download the MongoDB image. The tests create an isolated database per test instance and clean the relevant collections before test cases; they do not require a separately installed MongoDB server.
+
+Run all tests from the repository root:
 
 ```bash
 dotnet restore HousingCostTrackerAPI/HousingCostTrackerAPI.slnx
 dotnet test HousingCostTrackerAPI/HousingCostTrackerAPI.slnx --configuration Release
+```
+
+Run only service unit tests:
+
+```bash
+dotnet test HousingCostTrackerAPI/HousingCostTrackerAPI.UnitTests/HousingCostTrackerAPI.UnitTests.csproj --filter "FullyQualifiedName~UnitTests"
+```
+
+Run only repository integration tests (requires Docker):
+
+```bash
+dotnet test HousingCostTrackerAPI/HousingCostTrackerAPI.UnitTests/HousingCostTrackerAPI.UnitTests.csproj --filter "FullyQualifiedName~RepositoryTests"
 ```
 
 ## Continuous integration
